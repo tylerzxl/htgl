@@ -1,0 +1,33 @@
+# Created by .ignore support plugin (hsz.mobi)
+autogenerate
+bin
+logs
+node_modules
+npm-debug.log
+#static/styles/default
+package-lock.json
+# Exclude compiled files
+build
+output
+#static/project.json
+
+# Exclude IDE project folders
+.happypack
+.idea
+.vscode
+.project
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_STORE
+.js.map
+node
+target
+# vi files
+.tern-project
+*.swp
+#static/public
+
+# webpack stats
+stats.json

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd"
+       default-autowire="byName">
+
+    <util:properties id="commonprops">
+        <prop key="encryptKey">kfd453sdfd678hfghgfh</prop>
+        <prop key="signTimeout">120</prop>
+        <prop key="cacheDuration">14400</prop>
+    </util:properties>
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="300" />
+        <property name="testOnBorrow" value="true" />
+    </bean>
+
+    <bean id="connectionFactory"  class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${mdd.redis.ip}" />
+        <property name="port" value="${mdd.redis.port}" />
+        <property name="password" value="${mdd.redis.passWord}" />
+        <property name="database" value="${mdd.redis.db.index}" />
+        <property name="poolConfig" ref="poolConfig" />
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+    </bean>
+    
+    
+    
+    <bean id="redisConfig" class="org.imeta.spring.support.cache.RedisConfig"
+          p:server="${mdd.redis.ip}"
+          p:port="${mdd.redis.port}"
+          p:password="${mdd.redis.passWord}"
+          p:timeout="${mdd.redis.timeout}"
+          p:maxTotal="${mdd.jedis.pool.maxActive}"
+          p:maxIdle="${mdd.jedis.pool.maxIdle}"
+          p:ssl="false"
+          p:test="false"/>
+    <bean id="redisManager" class="org.imeta.spring.support.cache.RedisManager">
+        <property name="redisConfig" ref="redisConfig"/>
+        <property name="defaultDuration" value="#{commonprops.cacheDuration}"/>
+    </bean>
+    <bean id="redisPubConfig" class="org.imeta.spring.support.cache.RedisConfig"
+          p:server="${mdd.redis.ip}"
+          p:port="${mdd.redis.port}"
+          p:password="${mdd.redis.passWord}"
+          p:timeout="${mdd.redis.timeout}"
+          p:maxTotal="${mdd.jedis.pool.maxActive}"
+          p:maxIdle="${mdd.jedis.pool.maxIdle}"
+          p:ssl="false"
+          p:test="false"/>
+    <bean id="redisPubManager" class="org.imeta.spring.support.cache.RedisManager">
+        <property name="redisConfig" ref="redisPubConfig"/>
+        <property name="defaultDuration" value="#{commonprops.cacheDuration}"/>
+    </bean>
+
+    <bean class="com.yonyou.ucf.mdd.ext.cache.RedisManagerFactory" />
+</beans>

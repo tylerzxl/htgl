@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>hbyun</artifactId>
+        	<groupId>com.yonyou.ucf</groupId>
+		<version>3.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>dev-hbyun-extend</artifactId>
+	<description>User extend</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.yonyou.ucf</groupId>
+			<artifactId>dev-hbyun-app</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-stdlib</artifactId>
+			<version>1.3.40</version>
+			<scope>compile</scope>
+		</dependency>
+
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>win</id>
+			<dependencies>
+				<dependency>
+					<groupId>com.eclipsesource.j2v8</groupId>
+					<artifactId>j2v8_win32_x86_64</artifactId>
+					<version>5.1.0-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+			<activation>
+				<os>
+					<family>Windows</family>
+				</os>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>linux</id>
+			<dependencies>
+				<dependency>
+					<groupId>com.eclipsesource.j2v8</groupId>
+					<artifactId>j2v8_linux_x86_64</artifactId>
+					<version>5.1.0-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+			<activation>
+				<os>
+					<family>linux</family>
+				</os>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>mac</id>
+			<dependencies>
+				<dependency>
+					<groupId>com.eclipsesource.j2v8</groupId>
+					<artifactId>j2v8_macos_x86_64</artifactId>
+					<version>5.1.0-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+		</profile>
+	</profiles>
+
+</project>

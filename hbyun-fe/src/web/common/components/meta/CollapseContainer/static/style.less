@@ -1,0 +1,154 @@
+@width: 150px;
+@anchorWidth: 100px;
+
+.collapse-container {
+    position: relative;
+    background-color: #ffffff;
+
+    // 设计态
+    &[nid] {
+        // background-color: red;
+        & > .nodes {
+            .content {
+                background-color: #F8F9FB;
+            }
+        }
+    }
+
+    // 顶级容器
+    &.isTop:not(.anchor) {
+        & > .nodes {
+            & > .content {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    & > .nodes {
+        &:not(.notitle) {
+            padding-left: 10px;
+        }
+        & > .title {
+            & > h6 {
+                & > .icon {
+                    transition: all 0.5s ease;
+                    transform: rotate(90deg);
+                    display: inline-block;
+                    color: #666666;
+                    margin-left: 5px;
+                    font-size: 12px;
+                    vertical-align: baseline;
+                }
+
+                &.open {
+                    & > .icon {
+                        transform: rotate(-90deg);
+                    }
+                }
+
+                &::before {
+                    width:4px;
+                    height:10px;
+                    background:rgba(238, 34, 35, 1);
+                    border-radius:1px;
+                    position: absolute;
+                    content: "";
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                padding: 12px 0 12px 10px;
+                display: inline-block;
+                position: relative;
+                cursor: pointer;
+                color: #333333;
+                font-size: 16px;
+                font-family:PingFangSC-Semibold, PingFang SC;
+                font-weight:600;
+                line-height:22px;
+                &:hover {
+                    color: #f53c32;
+                    & > span {
+                        color: #f53c32;
+                    }
+                }
+            }
+        }
+        & > .content {
+            margin-left: 10px;
+            background-color: transparent;
+            border: none;
+        }
+    }
+
+    & > .left {
+        padding-right: @width;
+        width: 100%;
+    }
+
+    & > .right {
+        float: right;
+        width: @width;
+        #anchor-container {
+            position: fixed;
+            z-index: 999;
+            padding: 0 20px;
+
+            ul.anchor-nav {
+                &.level-1 {
+                    position: relative;
+                    &::before {
+                        content: "";
+                        width: 1px;
+                        height: 100%;
+                        background: #E8EAEC;
+                        position: absolute;
+                        content: "";
+                        left: 0px;
+                        top: 0;
+                        bottom: 0;
+                    }
+                }
+                & > li {
+                    .highlight {
+                        color: #EE2223;
+                    }
+
+                    & > a {
+                        padding-left: 10px;
+                        line-height: 35px;
+                        display: block;
+                        color:#333333;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        &:hover {
+                            .highlight();
+                        }
+                    }
+
+                    &.active {
+                        & > a {
+                            position: relative;
+                            .highlight();
+                            &::before {
+                                content: "";
+                                width: 2px;
+                                height: 19px;
+                                border-radius:1px;
+                                background: #EE2223;
+                                position: absolute;
+                                content: "";
+                                left: 0px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

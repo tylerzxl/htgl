@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+       default-autowire="byName">
+ 
+    <!--<context:component-scan base-package="com.yonyoucloud.bill.srvbill"></context:component-scan>-->
+    <!--<context:component-scan base-package="com.yonyoucloud.bill.info"></context:component-scan>-->
+    <!--<context:component-scan base-package="com.yonyoucloud.bill.billtransfer"></context:component-scan>-->
+    <!--<context:component-scan base-package="com.yonyoucloud.bill.notice"></context:component-scan>-->
+    <!--<context:component-scan base-package="com.yonyoucloud.bill.price"></context:component-scan>-->
+ 
+    <!--<bean id="infoService" class="com.yonyoucloud.bill.info.service.impl.InfoServiceImpl"></bean>-->
+    <!--<bean id="sendService" class="com.yonyoucloud.bill.srvbill.service.impl.SendServiceImpl"></bean>-->
+
+    <!--<bean id="billMakerService" class="com.yonyoucloud.bill.billtransfer.service.impl.BillMakerServiceImpl"></bean>-->
+       
+    <!--<bean id="billService" class="com.yonyou.ucf.mdd.ext.bill.service.BillServiceImpl"></bean>-->
+    <!--规则 -->
+    <bean id="fillPKRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.FillPKRule"></bean>
+    <bean id="refreshTsRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.RefreshTsRule"></bean>
+    <bean id="updateBillCodeRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.UpdateBillCodeRule"></bean>
+
+<!--    <bean id="saveBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.SaveBillRule"></bean>-->
+<!--    <bean id="enhanceSaveBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.enhance.EnhanceSaveBillRule"></bean>-->
+
+    <bean id="deleteBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.DeleteBillRule"></bean>
+    <bean id="detailBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.DetailBillRule"></bean>
+    <bean id="fillMasterOrgBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.FillMasterOrgBillRule"></bean>
+    <bean id="listDetailBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.ListDetailBillRule"></bean>
+    <bean id="addBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.AddBillRule"></bean>
+    <bean id="enhanceAddBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.enhance.EnhanceAddBillRule"></bean>
+
+    <bean id="copyBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.CopyBillRule"></bean>
+    <bean id="queryBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.QueryBillRule"></bean>
+
+    <bean id="closeBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.CloseBillRule"></bean>
+    <bean id="linecloseBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.LineCloseBillRule"></bean>
+    <bean id="movefirstBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.MovefirstBillRule"></bean>
+    <bean id="movelastBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.MovelastBillRule"></bean>
+    <bean id="movenextBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.MovenextBillRule"></bean>
+    <bean id="moveprevBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.MoveprevBillRule"></bean>
+    <bean id="querytreeBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.QuerytreeBillRule"></bean>
+    <bean id="unauditBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.UnauditBillRule"></bean>
+    <bean id="openBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.OpenBillRule"></bean>
+    <bean id="lineopenBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.LineOpenBillRule"></bean>
+    <bean id="referenceCheckRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.ReferenceCheckRule"></bean>
+    <bean id="jsonFormatterRule" class="com.yonyou.ucf.mdd.ext.bill.rule.after.JsonFormatterRule"></bean>
+    <bean id="checkStopRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CheckStopRule"></bean>
+    <bean id="lockBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.LockBillRule"></bean>
+    <bean id="unlockBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.UnlockBillRule"></bean>
+    <bean id="invalidBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.InvalidBillRule"></bean>
+    <bean id="checkCodeRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CheckCodeRule"></bean>
+<!--    <bean id="submitBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.SubmitBillRule"></bean>-->
+<!--    <bean id="unsubmitBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.UnsubmitBillRule"></bean>-->
+<!--    <bean id="deleteBpmRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.DeleteBpmRule"></bean>-->
+    <bean id="stopBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.StopBillRule"></bean>
+    <bean id="unstopBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.UnstopBillRule"></bean>
+    <bean id="checkUniqueRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CheckUniqueRule"></bean>
+<!--    <bean id="showRefRule" class="com.yonyou.ucf.mdd.ext.bill.rule.refer.ShowRefRule"></bean>-->
+    <bean id="referDataRule" class="com.yonyou.ucf.mdd.ext.bill.rule.refer.ReferDataRule"></bean>
+    <bean id="referRefreshRule" class="com.yonyou.ucf.mdd.ext.bill.rule.refer.ReferRefreshRule"></bean>
+    <bean id="beforeRefRule" class="com.yonyou.ucf.mdd.ext.bill.rule.refer.BeforeRefRule"></bean>
+    <bean id="auditBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.AuditBillRule"></bean>
+    <bean id="batchModifyBillRule" class="com.yonyou.ucf.mdd.ext.bill.rule.crud.BatchModifyBillRule"></bean>
+	
+	<bean id="nothingtodoRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.NothingtodoRule"></bean>
+	<bean id="checkDocRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CheckDocRule"></bean>
+
+    <!-- 审批流提交插件 -->
+
+    <!-- makebill 注入 -->
+    <bean id="makeBillRuleService" class="com.yonyou.ucf.mdd.ext.bill.billmake.service.impl.MakeBillRuleServiceImpl"></bean>
+    <bean id="makeBillRuleDetailService"
+          class="com.yonyou.ucf.mdd.ext.bill.billmake.service.impl.MakeBillRuleDetailServiceImpl"></bean>
+    <bean id="makeBillRuleClientService"
+          class="com.yonyou.ucf.mdd.ext.bill.billmake.service.impl.MakeBillRuleClientServiceImpl"></bean>
+	<bean id="queryPullAndPushRule"
+          class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.QueryPullAndPushRule"></bean>
+    	<bean id="divideVoucherForPullRule"
+          class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.DivideVoucherForPullRule"></bean>
+    <!-- 回写调用的注入 -->
+    <bean id="backWriteBeforeRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.BackWriteBeforeRule"/>
+    <bean id="cursorDeleteBeforeRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.CursorDeleteBeforeRule"/>
+    <bean id="backWriteAfterRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.BackWriteAfterRule"/>
+    <bean id="backWriteRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.BackWriteRule"/>
+ 	<bean id="backWriteCacheRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.BackWriteCacheRule"/>
+    <!-- 推式生单和拉式生单公用的服务  前后事件的处理 -->
+    <bean id="beforePullAndPushRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.BeforePullAndPushRule"/>
+    <bean id="afterPullAndPushRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.AfterPullAndPushRule"/>
+    <bean id="converterPullAndPushRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.ConverterPullAndPushRule"/>
+	<bean id="afterPullAndPushSNRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.AfterPullAndPushSNRule"/>
+    <!-- 单据前缀规则 -->
+    <bean id="billNumPrefixRuleService" class="com.yonyou.ucf.mdd.ext.bill.service.BillNumPrefixRuleServiceImpl"/>
+    
+    <bean id="billPrintService"  class="com.yonyou.ucf.mdd.ext.bill.service.BillPrintService"></bean>
+        
+  	<bean id="detailBillRuleOfRule"  class="com.yonyou.ucf.mdd.ext.sys.rule.biz.DetailBillRuleOfRule"></bean>  
+  	<bean id="saveBillRuleOfRule"  class="com.yonyou.ucf.mdd.ext.sys.rule.biz.SaveBillRuleOfRule"></bean>    
+	<bean id="calcQuantityRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CalcQuantityRule"></bean>
+	<bean id="calcPriceQuantityRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CalcPriceQuantityRule"></bean>
+	<bean id="calcMoneyRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CalcMoneyRule"></bean>
+	<bean id="getExchRateRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.GetExchRateRule"></bean>
+	<bean id="checkDataCleanRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CheckDataCleanRule"></bean>
+	
+	 <bean  id="detailBillUserdefRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.DetailBillUserdefRule"></bean>
+	  <bean  id="toolbarRefRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.ToolbarRefRule"></bean>
+	 <bean id="saveBllUserdefBtnRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.SaveBllUserdefBtnRule"></bean>
+	 <bean id="stopKanbanRule" class="com.yonyou.ucf.mdd.ext.sys.rule.biz.StopKanbanRule"></bean>
+	 
+	 <bean id="messageQueueRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.MessageQueueRule"></bean>
+	 <bean id="externalUrlRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.ExternalUrlRule"></bean>
+	 <bean id="businessEventRule" class="com.yonyou.ucf.mdd.ext.bill.rule.biz.BusinessEventRule"></bean>
+	 <bean id="timeoutTestRule" class="com.yonyou.ucf.mdd.ext.bill.rule.test.TimeoutTestRule"></bean>
+	 <bean id="sagaTestRule" class="com.yonyou.ucf.mdd.ext.bill.rule.test.SagaTestRule"></bean>
+    <bean id="dtcErrorTestRule" class="com.yonyou.ucf.mdd.ext.bill.rule.test.DtcErrorTestRule"></bean>
+    <bean id="rpcRule" class="com.yonyou.ucf.mdd.ext.bill.rule.common.RpcRuleImpl"></bean>
+
+    <bean id="billNumberService" class="com.yonyou.ucf.mdd.ext.bill.service.BillNumberServiceImpl"/>
+     <bean id="billTemDataService" class="com.yonyou.ucf.mdd.ext.bill.billtemplatedata.service.BillTemDataService"/>
+     <!--流程rule  -->
+     <bean id="afterCheckByBizFlowRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.AfterCheckByBizFlowRule"/>
+      <bean id="buildFlowDataRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.BuildFlowDataRule"/>
+      <bean id="filterByBizFlowRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.FilterByBizFlowRule"/>
+      <bean id="filterPullDataByBizFlowRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.FilterPullDataByBizFlowRule"/>
+      <bean id="divideVoucherByFlowRule" class=" com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.DivideVoucherByFlowRule"/>
+      <bean id="backWriteSaveRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.BackWriteSaveRule"/>
+      <bean id="bizFlowService" class="com.yonyou.ucf.mdd.ext.bill.billmake.service.impl.BizFlowServiceImpl"/>
+
+     <bean id="socialService" class="com.yonyou.ucf.mdd.ext.bill.service.SocialServiceImpl"/>
+     <bean id="backWriteSaveForSocialRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.BackWriteSaveForSocialRule"/>
+     <bean id="eventMakeBillConsumer" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.event.EventMakeBillConsumer"/> 
+     <bean id="eventMakeBillParamsRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.event.EventMakeBillParamsRule"/>
+
+    <!-- 导入前置校验规则 -->
+    <bean id="checkImportDataRule" class="com.yonyou.ucf.mdd.ext.bill.rule.check.CheckImportDataRule"/>
+    <bean id="divideVoucherBySocialRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.social.DivideVoucherBySocialRule"/>
+    <!-- 多来源生单 -->
+    <bean id="divideVoucherByMultipleRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.DivideVoucherByMultipleRule"/>
+    <!--内部协同分单  -->
+    <bean id="divideVoucherByInnerCoRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.crud.DivideVoucherByInnerCoRule"/>
+    <bean id="innerCollaborativeService" class="com.yonyou.ucf.mdd.ext.bill.service.InnerCollaborativeServiceImpl"/>
+    <!--自动级联生单 -->
+    <bean id="autoPushBillRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.AutoPushBillRule"/>
+    <bean id="buildPushVORule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.BuildPushVORule"/>
+    <bean id="autoPushSaveRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.bizFlow.AutoPushSaveRule"/>
+
+    <!-- 社会化银行网点及银行类别保存前规则 -->
+    <bean id="saveSocialDataBeforeSaveRule" class="com.yonyou.ucf.mdd.ext.bill.rule.social.BankSocialDataRule"/>
+     <bean id="bizEventSendService" class="com.yonyou.ucf.mdd.ext.bill.service.EventSendService"/>
+     <bean id="importDataEventReceiveService" class="com.yonyou.ucf.mdd.ext.bill.service.ImportDataEventReceiveService"/>
+     <!-- 社会化拉单前置规则 -->
+	<bean id="filterPullDataBySocialBeforeRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.social.FilterPullDataBySocialBeforeRule"/>
+<!--    <bean id="importDataEventReceive" class="com.yonyou.cloud.bean.RemoteCallInfo">-->
+<!--        <property name="appCode" value="${spring.application.name}"/>-->
+<!--        <property name="alias" value="importDataEventReceiveService"/>-->
+<!--        <property name="className" value="com.yonyou.iuap.event.rpc.IEventReceiveService"/>-->
+<!--    </bean>-->
+	<!--  -->
+	<bean id="asyncMakeBillRule" class="com.yonyou.ucf.mdd.ext.bill.billmake.rule.event.AsyncMakeBillRule"/>
+
+
+
+    <bean id="makeBillRuleDao" class="com.yonyou.ucf.mdd.ext.bill.billmake.dao.impl.MakeBillRuleDaoImpl"></bean>
+    <bean id="makeBillRuleDetailDao" class="com.yonyou.ucf.mdd.ext.bill.billmake.dao.impl.MakeBillRuleDetailDaoImpl"></bean>
+
+    <bean id="makeBillMetaEnhance" class="com.yonyou.ucf.mdd.ext.bill.billmake.service.impl.DefaultMakeBillMetaEnhance">
+        <property name="enhanceMap">
+            <map>
+                <entry key="billmake.model.MakeBillRuleDetail" >
+                    <list>
+                        <bean class="com.yonyou.ucf.mdd.ext.model.ExtProperty"  p:name="refFieldExt" p:title="参照扩展属性" p:colunmName="refFieldExt" p:type="String"  p:length="50"/>
+                    </list>
+                </entry>
+                <entry key="billmake.model.MakeBillRuleGroupItem" >
+                    <list>
+                        <bean class="com.yonyou.ucf.mdd.ext.model.ExtProperty"  p:name="cDataRule" p:title="扩展规则" p:colunmName="cDataRule" p:type="String"  p:length="1000"/>
+                    </list>
+                </entry>
+                <entry key="billmake.model.MakeBillRuleTenant" >
+                    <list>
+                        <bean class="com.yonyou.ucf.mdd.ext.model.ExtProperty"  p:name="srcOrg" p:title="来源组织" p:colunmName="srcOrgId" p:type="String"  p:length="200"/>
+                        <bean class="com.yonyou.ucf.mdd.ext.model.ExtProperty"  p:name="tarOrg" p:title="目的组织" p:colunmName="tarOrgId" p:type="String"   p:length="200"/>
+                        <bean class="com.yonyou.ucf.mdd.ext.model.ExtProperty"  p:name="enable" p:title="启用状态" p:colunmName="enable" p:type="Boolean" p:defaultValue="true"/>
+                    </list>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+    <bean id="filterService" class="com.yonyou.ucf.mdd.ext.filter.service.impl.FilterServiceImpl"></bean>
+    <bean id="metaFilterItemDAO" class="com.yonyou.ucf.mdd.ext.filter.dao.impl.MetaFilterItemDAOImpl"></bean>
+    <bean id="metaFiltersDAO" class="com.yonyou.ucf.mdd.ext.filter.dao.impl.MetaFiltersDAOImpl"></bean>
+    <bean id="solutionDAO" class="com.yonyou.ucf.mdd.ext.filter.dao.impl.SolutionDAOImpl"></bean>
+    <bean id="filterQuickDAO" class="com.yonyou.ucf.mdd.ext.filter.dao.impl.FilterQuickDAOImpl"></bean>
+
+
+
+    <bean id="billMetaService" class="com.yonyou.ucf.mdd.ext.bill.meta.service.BillMetaService"></bean>
+    <bean id="billPOIService" class="com.yonyou.ucf.mdd.ext.bill.meta.service.BillPOIService"></bean>
+    <bean id="mddextItemRule" class="com.yonyou.ucf.mdd.ext.bill.service.ItemRuleService"></bean>
+    <bean id="jointQueryService" class="com.yonyou.ucf.mdd.ext.bill.service.JointQueryServiceImpl">
+        <property name="jointQueryDao" ref="jointQueryDAO"></property>
+        <property name="itemRuleService" ref="mddextItemRule"></property>
+    </bean>
+    <bean id="billProcessService" class="com.yonyou.ucf.mdd.ext.bill.service.BillProcessServiceImpl">
+        <property name="processDao" ref="billProcessDAO"></property>
+        <property name="itemRuleService" ref="mddextItemRule"></property>
+    </bean>
+    <bean id="viewloader" class="com.yonyou.ucf.mdd.ext.bill.meta.loader.ViewLoader"/>
+    <bean id="viewModelloader" class="com.yonyou.ucf.mdd.ext.bill.meta.loader.ViewModelLoader"/>
+    <bean id="metaLoader" class="com.yonyou.ucf.mdd.ext.bill.meta.loader.MetaLoader">
+        <property name="loaders">
+            <bean class="org.springframework.beans.factory.config.MapFactoryBean">
+                <property name="targetMapClass">
+                    <value>org.apache.commons.collections.map.CaseInsensitiveMap</value>
+                </property>
+                <property name="sourceMap">
+                    <map>
+                        <entry key="viewApplication" value-ref="viewloader"/>
+                        <entry key="viewmodel" value-ref="viewModelloader"/>
+                    </map>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="billDesignService" class="com.yonyou.ucf.mdd.ext.bill.meta.service.BillDesignService"></bean>
+
+
+    <bean id="commandDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.CommandDAOImpl"></bean>
+    <bean id="itemRuleDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.ItemRuleDAOImpl"></bean>
+    <bean id="itemRuleScriptDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.ItemRuleScriptDAOImpl"></bean>
+    <bean id="statusDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.StatusDAOImpl"></bean>
+    <bean id="statusItemDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.StatusItemDAOImpl"></bean>
+    <bean id="toolbarDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.ToolbarDAOImpl"></bean>
+    <bean id="billitemDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.BillitemDAOimpl"></bean>
+    <bean id="jointQueryDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.JointQueryDAOImpl"></bean>
+    <bean id="billProcessDAO" class="com.yonyou.ucf.mdd.ext.bill.dao.BillProcessDAOImpl"></bean>
+
+</beans>

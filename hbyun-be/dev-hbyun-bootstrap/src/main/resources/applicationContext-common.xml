@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+       default-autowire="byName">
+
+    <bean id="mainAppContext" primary="true" class="com.yonyou.ucf.mdd.ext.core.AppContext">
+        <property name="configLocation" value="classpath:application.properties,
+            classpath:imeta-config.properties,classpath:mdd-db.properties,
+            classpath:mdd-dubbo.properties,
+            classpath:mdd-oss.properties,
+            classpath:mdd-partition.properties,
+            classpath:mdd-redis.properties"/>
+        <property name="partitions">
+            <list>
+
+                <bean class="com.yonyou.ucf.mdd.common.model.partition.Partition" p:itf="common.base.Tenant"
+                      p:keyField="tenant_id" p:valueField="yhtTenantId">
+                </bean>
+            </list>
+        </property>
+
+    </bean>
+
+</beans>

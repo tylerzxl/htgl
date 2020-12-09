@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, maximum-scale=1"
+    />
+    <meta charset="UTF-8" />
+    <link href="./preview.css" rel="stylesheet" />
+    <link rel="icon" href="./favicon.ico">
+    <title>预览</title>
+    <script type="text/javascript" src="./qrcode.js"></script>
+    <!-- <script type="text/javascript" src="./jquery-3.5.1.js"></script> -->
+  </head>
+
+  <body>
+    <div id="root">
+
+      <div id="header">
+        <div id="header_left">
+          <img
+            src="images/yb-logo.png"
+            style="width: 120px; height: 28px; margin-left: 10px;"
+          />
+          <input
+            type="checkbox"
+            id="status"
+            checked="true"
+            style="display: none;"
+          />
+        </div>
+        <div id="header_title">
+          <span class="font_title">预览</span>
+        </div>
+        <div id="header_right">
+          <div class="icon-button">
+            <img src="images/refresh.png" class="toolbar_image" /><span
+              class="toolbar_font"
+              onclick="updateIframe(url)"
+              >刷新</span
+            >
+          </div>
+          <div class="icon-button">
+            <img src="images/back.png" class="toolbar_image" /><span
+            class="toolbar_font"
+            onclick="back()"
+            >返回</span
+          ></div>
+          <div class="icon-button">
+            <img src="images/home.png" class="toolbar_image" /><span
+            class="toolbar_font"
+            onclick="updateIframe(url)"
+            >主页</span
+          ></div>
+        </div>
+      </div>
+      <div id="content">
+        <div id="content_left">
+          <span style="height: 100px;"></span>
+          <div class="columnBar">
+            <span class="content_font">手机型号</span>
+            <img class="content_image"  src="images/phone.png" style="margin-left: 6px;" ></img>
+            <span style="display: none; width: auto; margin-left: 3px; padding-top: 8px" onclick="changeHW()">
+              <svg
+                t="1589775535073"
+                class="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="3249"
+                width="24"
+                height="24"
+              >
+                <path
+                  d="M448 128a106.666667 106.666667 0 0 1 106.666667 106.666667v576a106.666667 106.666667 0 0 1-106.666667 106.666666H128a106.666667 106.666667 0 0 1-106.666667-106.666666V234.666667a106.666667 106.666667 0 0 1 106.666667-106.666667h320z m448 256a106.666667 106.666667 0 0 1 106.666667 106.666667v320a106.666667 106.666667 0 0 1-106.666667 106.666666H661.333333a42.666667 42.666667 0 1 1 0-85.333333h234.666667a21.333333 21.333333 0 0 0 21.333333-21.333333V490.666667a21.333333 21.333333 0 0 0-21.333333-21.333334H661.333333a42.666667 42.666667 0 1 1 0-85.333333z m-448-170.666667H128a21.333333 21.333333 0 0 0-21.333333 21.333334v554.666666a21.333333 21.333333 0 0 0 21.333333 21.333334h320a21.333333 21.333333 0 0 0 21.333333-21.333334V234.666667a21.333333 21.333333 0 0 0-21.333333-21.333334z m-64 458.666667a32 32 0 0 1 0 64h-170.666667a32 32 0 0 1 0-64z"
+                  p-id="3250"
+                ></path>
+              </svg>
+            </span>
+          </div>
+          <select id="selectPhone">
+            <option value="0">华为 nova </option>
+            <option value="1">iPhone 8 plus </option>
+            <option value="2">iPhone SE </option>
+            <option value="3">iPhone11/11 Pro Max </option>
+            <option value="4">iPhone11 Pro </option>
+            <option value="5">Nexus 5 </option>
+            <option value="6">Nexus 5x </option>
+            <option value="7">iNexus 6 </option>
+          </select>
+          <div id="screen_size">
+            <input
+              type="number"
+              id="iframeWidth"
+              placeholder="360"
+              value="360"
+              style="display: none;"
+            />
+            <input
+              type="number"
+              id="iframeHeight"
+              placeholder="700"
+              value="700"
+              style="display: none;"
+            />
+
+          </div>
+        </div>
+        <div id="content_preview">
+          <div id="wrapper">
+            <div class="phone view_3" id="phone_1">
+              <div id="phone-bar" onclick="changeTitleColor()">
+                <img id="bar-time" src="./images/bar-time.png"/>
+                <div id="bar-title"></div>
+                <img id="bar-battery" src="./images/bar-battery.png"/>
+              </div>
+              <iframe id="frame_1" scrolling="auto" style="overflow: hidden;"></iframe>
+            </div>
+          </div>
+        </div>
+        <div id="content_right">
+          <div id="qrBody">
+            <img id="qrcode-logo"  src="./images/esn-logo.png"/>
+            <div id="qrcode">
+            </div>
+            <div class="copy" onclick="copy()">
+              <span>打开友空间测试版</span><span>扫一扫进行真机查看</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="views" style="display: none;">
+        <button value="1">俯视</button>
+        <button value="3">平视</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="./preview.js"></script>
+  </body>
+</html>
